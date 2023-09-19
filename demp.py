@@ -1,4 +1,5 @@
 from cement_strength.config.configuration import Configuration
+from cement_strength.pipeline.pipeline import Pipeline
 
-config = Configuration()
-config.get_data_ingestion_config()
+pipeline = Pipeline()
+pipeline.run_pipeline()
