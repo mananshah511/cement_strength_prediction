@@ -3,7 +3,7 @@ from cement_strength.logger import logging
 from cement_strength.constant import *
 import os,sys
 from cement_strength.util.util import read_yaml
-from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig
+from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig
 
 class Configuration:
 
@@ -45,6 +45,30 @@ class Configuration:
                                                         ingested_test_data_dir=ingested_test_data_dir)
             logging.info(f"data ingestion config : {data_ingestion_config}")
             return data_ingestion_config
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+
+    def get_data_validation_config(self)->DataValidationConfig:
+        try:
+            logging.info("get data validation function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            data_validation_config = self.config_info[DATA_VALIDATION_CONFIG_KEY]
+
+            data_validation_artifact_dir = os.path.join(artifact_dir,DATA_VALIDATION_DIR,self.time_stamp)
+
+            schema_file_dir = os.path.join(ROOT_DIR,data_validation_config[DATA_VALIDATION_SCHEMA_DIR_KEY],data_validation_config[DATA_VALIDATION_SCHEMA_FILE_KEY])
+
+            report_file_page_dir = os.path.join(data_validation_artifact_dir)
+
+            report_name = data_validation_config[DATA_VALIDATION_REPORT_PAGE_FILE_KEY]
+
+            data_validation_config = DataValidationConfig(schema_file_dir=schema_file_dir,report_page_file_dir=report_file_page_dir
+                                                          ,report_name=report_name)
+            logging.info(f"data validation config : {data_validation_config}")
+
+            return data_validation_config
+
         except Exception as e:
             raise CementstrengthException(e,sys) from e
 

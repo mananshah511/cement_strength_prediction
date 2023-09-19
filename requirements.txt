@@ -1,0 +1,10 @@
+Flask
+gunicorn
+sklearn
+numpy
+pandas
+pyYAML
+six
+evidently==0.2.8
+dill
+xlrd==2.0.1

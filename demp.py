@@ -3,3 +3,6 @@ from cement_strength.pipeline.pipeline import Pipeline
 
 pipeline = Pipeline()
 pipeline.run_pipeline()
+
+#config = Configuration()
+#config.get_data_validation_config()

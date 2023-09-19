@@ -63,7 +63,7 @@ class DataIngestion:
 
             logging.info("splitting data into train and test files")
 
-            X_train,X_test,y_train,y_test = train_test_split(cement_df.iloc[:,:-1],cement_df.iloc[:,1],test_size=0.2, random_state=42)
+            X_train,X_test,y_train,y_test = train_test_split(cement_df.iloc[:,:-1],cement_df.iloc[:,-1],test_size=0.2, random_state=42)
 
             train_df = None
             test_df = None
