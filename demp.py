@@ -5,4 +5,4 @@ pipeline = Pipeline()
 pipeline.run_pipeline()
 
 #config = Configuration()
-#config.get_data_validation_config()
+#config.get_data_transformation_config()

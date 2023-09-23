@@ -36,5 +36,17 @@ DATA_VALIDATION_SCHEMA_DIR_KEY = "scheme_dir"
 DATA_VALIDATION_SCHEMA_FILE_KEY = "schema_file"
 DATA_VALIDATION_REPORT_PAGE_FILE_KEY = "report_page_file_name"
 
+#data transformation related variables
+
+DATA_TRANSFORMATION_CONFIG_KEY = "data_transformation_config"
+DATA_TRANSFORMATION_DIR = "data_transformation"
+DATA_TRANSFORMATION_GRAPH_DIR_KEY = "graph_save_dir"
+DATA_TRANSFORMATION_TRAIN_DIR_KEY = "train_dir"
+DATA_TRANSFORMATION_TEST_DIR_KEY = "test_dir"
+DATA_TRANSFORMATION_PREPROCESSSED_OBJECT_DIR_KEY = "preprocessed_object_dir"
+DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME_KEY = "preprocessed_object_file_name"
+
+
+
 
 

@@ -8,3 +8,6 @@ six
 evidently==0.2.8
 dill
 xlrd==2.0.1
+yellowbrick
+csv
+pathlib

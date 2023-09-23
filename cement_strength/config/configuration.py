@@ -3,7 +3,8 @@ from cement_strength.logger import logging
 from cement_strength.constant import *
 import os,sys
 from cement_strength.util.util import read_yaml
-from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig
+from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig
+
 
 class Configuration:
 
@@ -69,6 +70,32 @@ class Configuration:
 
             return data_validation_config
 
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+        
+    def get_data_transformation_config(self)->DataTransformationConfig:
+        try:
+            logging.info("get data transform config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            data_transform_config = self.config_info[DATA_TRANSFORMATION_CONFIG_KEY]
+
+            data_transform_artifact_dir = os.path.join(artifact_dir,DATA_TRANSFORMATION_DIR,self.time_stamp)
+
+            transform_train_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_TRAIN_DIR_KEY])
+            transform_test_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_TEST_DIR_KEY])
+
+            transform_graph_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_GRAPH_DIR_KEY])
+
+            transform_preprocessed_object_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_PREPROCESSSED_OBJECT_DIR_KEY],
+                                                                                                               data_transform_config[DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME_KEY])
+            data_transform_config = DataTransformationConfig(transform_train_dir=transform_train_dir,
+                                                             transform_test_dir=transform_test_dir,
+                                                             graph_save_dir=transform_graph_dir,
+                                                             preprocessed_file_path=transform_preprocessed_object_dir)
+            logging.info(f"data tranform config: {data_transform_config}")
+
+            return data_transform_config
         except Exception as e:
             raise CementstrengthException(e,sys) from e
 

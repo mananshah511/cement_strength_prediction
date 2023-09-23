@@ -20,4 +20,4 @@ numerical_columns:
   - Age (day)
   - "Concrete compressive strength(MPa, megapascals) "
 
-target_column: Concrete compressive strength(MPa, megapascals)
+target_column: 'Concrete compressive strength(MPa, megapascals) '
