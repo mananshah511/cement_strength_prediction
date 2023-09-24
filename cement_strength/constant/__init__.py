@@ -11,6 +11,8 @@ CONFIG_FILE_PATH = os.path.join(ROOT_DIR ,CONFIG_DIR ,CONFIG_FILE_NAME)
 
 CURRENT_TIME_STAMP = get_current_time_stamp()
 
+NO_CLUSTER = 3
+
 #training pipeline related variables
 
 TRAINING_PIPELINE_CONFIG_KEY = "training_pipeline_config"
@@ -45,6 +47,10 @@ DATA_TRANSFORMATION_TRAIN_DIR_KEY = "train_dir"
 DATA_TRANSFORMATION_TEST_DIR_KEY = "test_dir"
 DATA_TRANSFORMATION_PREPROCESSSED_OBJECT_DIR_KEY = "preprocessed_object_dir"
 DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME_KEY = "preprocessed_object_file_name"
+DATA_TRANSFORMATION_CLUSTER_MODEL_DIR_KEY = "cluster_model_dir"
+DATA_TRANSFORMATION_CLUSTER_MODEL_FILE_NAME_KEY = "cluster_model_file_name"
+
+
 
 
 

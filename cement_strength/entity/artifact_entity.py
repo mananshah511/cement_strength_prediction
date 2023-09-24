@@ -8,6 +8,7 @@ DataValidationArtifact = namedtuple("DataValidationArtifact",["schema_file_path"
 
 DataTransformationArtifact = namedtuple("DataTransformationArtifact",["transform_train_dir",
                                                                       "transform_test_dir","preprocessed_object_dir",
+                                                                      "cluster_model_dir",
                                                                       "message","is_transfromed"])
 
 

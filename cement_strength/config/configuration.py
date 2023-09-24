@@ -89,10 +89,16 @@ class Configuration:
 
             transform_preprocessed_object_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_PREPROCESSSED_OBJECT_DIR_KEY],
                                                                                                                data_transform_config[DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME_KEY])
+            
+            cluster_model_dir = os.path.join(data_transform_artifact_dir,data_transform_config[DATA_TRANSFORMATION_CLUSTER_MODEL_DIR_KEY],
+                                                                                               data_transform_config[DATA_TRANSFORMATION_CLUSTER_MODEL_FILE_NAME_KEY])
+            
+
             data_transform_config = DataTransformationConfig(transform_train_dir=transform_train_dir,
                                                              transform_test_dir=transform_test_dir,
                                                              graph_save_dir=transform_graph_dir,
-                                                             preprocessed_file_path=transform_preprocessed_object_dir)
+                                                             preprocessed_file_path=transform_preprocessed_object_dir,
+                                                             cluser_model_file_path=cluster_model_dir)
             logging.info(f"data tranform config: {data_transform_config}")
 
             return data_transform_config
