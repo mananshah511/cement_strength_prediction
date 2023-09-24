@@ -10,6 +10,8 @@ DataTransformationArtifact = namedtuple("DataTransformationArtifact",["transform
                                                                       "transform_test_dir","preprocessed_object_dir",
                                                                       "cluster_model_dir",
                                                                       "message","is_transfromed"])
+ModelTrainerArtifact = namedtuple("ModelTrainerArtifact",["is_trained","message","train_rmse","test_rmse",
+                                                          "train_accuracy","test_accuracy","model_accuracy"])
 
 
 

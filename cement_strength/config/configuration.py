@@ -3,7 +3,7 @@ from cement_strength.logger import logging
 from cement_strength.constant import *
 import os,sys
 from cement_strength.util.util import read_yaml
-from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig
+from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig
 
 
 class Configuration:
@@ -102,6 +102,38 @@ class Configuration:
             logging.info(f"data tranform config: {data_transform_config}")
 
             return data_transform_config
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+        
+    def get_model_trainer_config(self)->ModelTrainerConfig:
+        try:
+            logging.info(f"get model trainer config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            model_trainer_config = self.config_info[MODEL_TRAINER_CONFIG_KEY]
+
+            model_trainer_config_dir = os.path.join(artifact_dir,MODEL_TRAINER_DIR,self.time_stamp)
+
+            base_accuracy = model_trainer_config[MODEL_TRAINER_BASE_ACCURACY_KEY]
+
+            config_file_path = os.path.join(ROOT_DIR,model_trainer_config[MODEL_TRAINER_CONFIG_DIR_KEY],
+                                            model_trainer_config[MODEL_TRAINER_CONFIG_FILE_NAME_KEY])
+            
+            model_file_path = os.path.join(model_trainer_config_dir,model_trainer_config[MODEL_TRAINER_MODEL_FILE_NAME_KEY])
+
+
+            model_trainer_config = ModelTrainerConfig(model_config_file_path=config_file_path,
+                                                      trained_model_file_path=model_file_path,
+                                                      base_accuracy=base_accuracy)
+            
+            logging.info(f"model trainer config : {model_trainer_config}")
+            
+            return model_trainer_config
+            
+
+
+
+
         except Exception as e:
             raise CementstrengthException(e,sys) from e
 
