@@ -3,9 +3,10 @@ from cement_strength.exception import CementstrengthException
 from cement_strength.logger import logging
 from cement_strength.component.data_ingestion import DataIngestion
 from cement_strength.config.configuration import Configuration
-from cement_strength.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact
+from cement_strength.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact
 from cement_strength.component.data_validation import DataValidation
 from cement_strength.component.data_transform import DataTransformation
+from cement_strength.component.model_trainer import ModelTrainer
 
 class Pipeline:
 
@@ -40,8 +41,18 @@ class Pipeline:
         except Exception as e:
             raise CementstrengthException(e,sys) from e
         
+    def startd_model_trainer(self,data_transform_artifact:DataTransformationArtifact
+                             )->ModelTrainerArtifact:
+        try:
+            model_trainer = ModelTrainer(model_trainer_config=self.config.get_model_trainer_config(),
+                                         data_transform_artifact=data_transform_artifact)
+            return model_trainer.intiate_model_trainer()
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+        
     def run_pipeline(self):
         data_igestion_artifact = self.start_data_ingestion()
         data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_igestion_artifact)
         data_transform_artifact = self.start_data_transformation(data_ingestion_artifact=data_igestion_artifact,
                                                              data_validation_artifact=data_validation_artifact)
+        model_trainer_artifact = self.startd_model_trainer(data_transform_artifact=data_transform_artifact)

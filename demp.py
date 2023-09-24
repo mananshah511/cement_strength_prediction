@@ -3,8 +3,8 @@ from cement_strength.pipeline.pipeline import Pipeline
 
 
 
-#pipeline = Pipeline()
-#pipeline.run_pipeline()
+pipeline = Pipeline()
+pipeline.run_pipeline()
 
-config = Configuration()
-config.get_model_trainer_config()
+#config = Configuration()
+#config.get_model_trainer_config()
