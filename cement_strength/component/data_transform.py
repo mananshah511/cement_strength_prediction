@@ -153,7 +153,7 @@ class DataTransformation:
 
 
         logging.info(f"cluster object intilized and data fit is completed")
-        kmeans = KMeans(n_clusters=3, init='k-means++',random_state=42)
+        kmeans = KMeans(n_clusters=n_clusters, init='k-means++',random_state=42)
         kmeans.fit(train_df.drop(target_column_name,axis=1))
 
         logging.info(f"predicting clusters mapping to data based on k-mean clusters for train data")
@@ -201,7 +201,7 @@ class DataTransformation:
                 csvwriter.writerow(columns_name)
                 for index in range(len(test_predict)):
                     if test_predict[index] == cluster_numbers[cluster_number]:
-                        csvwriter.writerow(train_df.iloc[index])
+                        csvwriter.writerow(test_df.iloc[index])
         logging.info(f"csv file writing for testing data is successfull")
 
         return kmeans

@@ -11,7 +11,7 @@ CONFIG_FILE_PATH = os.path.join(ROOT_DIR ,CONFIG_DIR ,CONFIG_FILE_NAME)
 
 CURRENT_TIME_STAMP = get_current_time_stamp()
 
-NO_CLUSTER = 3
+NO_CLUSTER = 4
 
 #training pipeline related variables
 

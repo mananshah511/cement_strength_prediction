@@ -1,0 +1,29 @@
+0.10
+----------best model after train and test evulation : Lasso(alpha=1) accuracy : 0.6474174909829834-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=11, min_samples_leaf=2) accuracy : 0.941783450202926-----------
+----------best model after train and test evulation : LinearRegression() accuracy : 0.8330838734094576-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=20, min_samples_leaf=2) accuracy : 0.932938581488862-----------
+
+0.12
+----------best model after train and test evulation : Ridge(alpha=2) accuracy : 0.6802744542087668-----------
+----------best model after train and test evulation : DecisionTreeRegressor(max_depth=15, min_samples_leaf=2) accuracy : 0.955826267184849-----------
+----------best model after train and test evulation : LinearRegression() accuracy : 0.8330838734094576-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=15, min_samples_leaf=2) accuracy : 0.931291654602508-----------
+
+0.15
+----------best model after train and test evulation : Ridge(alpha=2) accuracy : 0.6802744542087668-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=11, min_samples_leaf=2) accuracy : 0.9367489603999984-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=12, min_samples_leaf=2) accuracy : 0.8915406835464332-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=7, min_samples_leaf=2) accuracy : 0.9284275491025489-----------
+
+0.17
+----------best model after train and test evulation : Ridge(alpha=2) accuracy : 0.6802744542087668-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=15, min_samples_leaf=2) accuracy : 0.9394228545693558-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=20, min_samples_leaf=2) accuracy : 0.8952887327429547-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=11, min_samples_leaf=2) accuracy : 0.934732239900254-----------
+
+0.20
+----------best model after train and test evulation : Ridge(alpha=2) accuracy : 0.6802744542087668-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=15, min_samples_leaf=2) accuracy : 0.9381047702221377-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=20, min_samples_leaf=2) accuracy : 0.895969205151736-----------
+----------best model after train and test evulation : RandomForestRegressor(max_depth=20, min_samples_leaf=2) accuracy : 0.9353736183673456-----------

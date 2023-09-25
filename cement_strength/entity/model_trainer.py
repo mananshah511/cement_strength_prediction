@@ -40,10 +40,13 @@ def get_evulate_regression_model(model_list:list, X_train:np.ndarray, y_train:np
         logging.info(f"model list : {model_list}")
 
         for model in model_list:
-            logging.info(f"for mode : {model}")
+            logging.info(f"----for model : {model} evulation regression function started----")
             model_name = str(model)
             y_train_predict = model.predict(X_train)
+            #logging.info(f"train predict{y_train_predict}")
+
             y_test_predict = model.predict(X_test)
+            #logging.info(f"test predict{y_test_predict}")
 
             train_accuracy = r2_score(y_train,y_train_predict)
             test_accuracy = r2_score(y_test,y_test_predict)
@@ -60,7 +63,7 @@ def get_evulate_regression_model(model_list:list, X_train:np.ndarray, y_train:np
             logging.info(f"model accuracy: {model_accuracy}")
             logging.info(f"difference in train test accuracy: {diff_test_train_accu}")
 
-            if model_accuracy>=base_accuracy and diff_test_train_accu < 0.10:
+            if model_accuracy>=base_accuracy and diff_test_train_accu < 0.12:
                 base_accuracy = model_accuracy
 
                 Metric_info_artifact = MetricInfoArtifact(
