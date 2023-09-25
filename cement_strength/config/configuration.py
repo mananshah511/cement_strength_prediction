@@ -3,7 +3,7 @@ from cement_strength.logger import logging
 from cement_strength.constant import *
 import os,sys
 from cement_strength.util.util import read_yaml
-from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig
+from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvulationConfig
 
 
 class Configuration:
@@ -129,11 +129,23 @@ class Configuration:
             logging.info(f"model trainer config : {model_trainer_config}")
             
             return model_trainer_config
-            
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+        
+    def get_model_evalution_config(self)->ModelEvulationConfig:
+        try:
+            logging.info("get model evalution config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
 
+            model_evulation_config = self.config_info[MODEL_EVALUTION_CONFIG_KEY]
 
-
-
+            model_evulation_file_path = os.path.join(artifact_dir,MODEL_EVALUTION_DIR,
+                                                     model_evulation_config[MODEL_EVALUTION_FILE_NAME_KEY])
+            model_evulation_config = ModelEvulationConfig(evulation_file_path=model_evulation_file_path,
+                                                            time_stamp=self.time_stamp)
+                                                            
+            logging.info(f"model evulation config : {model_evulation_config}")
+            return model_evulation_config
         except Exception as e:
             raise CementstrengthException(e,sys) from e
 

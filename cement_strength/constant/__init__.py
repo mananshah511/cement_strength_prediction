@@ -52,12 +52,24 @@ DATA_TRANSFORMATION_CLUSTER_MODEL_FILE_NAME_KEY = "cluster_model_file_name"
 
 #model trainer related variables
 
-MODEL_TRAINER_CONFIG_KEY = "model_trainer-config"
+MODEL_TRAINER_CONFIG_KEY = "model_trainer_config"
 MODEL_TRAINER_DIR = "model_trainer"
 MODEL_TRAINER_BASE_ACCURACY_KEY = "base_accuracy"
 MODEL_TRAINER_MODEL_FILE_NAME_KEY = "model_file_name"
 MODEL_TRAINER_CONFIG_DIR_KEY = "model_config_dir"
 MODEL_TRAINER_CONFIG_FILE_NAME_KEY = "model_config_file_name"
+
+
+#model evalution related variable
+
+MODEL_EVALUTION_CONFIG_KEY = "model_evalution_config"
+MODEL_EVALUTION_DIR = "model_evalution"
+MODEL_EVALUTION_FILE_NAME_KEY = "model_evulation_file_name"
+
+
+BEST_MODEL_KEY = "best_model"
+HISTORY_KEY = "history"
+MODEL_PATH_KEY = "model_path"
 
 
 

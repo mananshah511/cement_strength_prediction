@@ -25,10 +25,14 @@ data_transformation_config:
   cluster_model_dir : cluster_model
   cluster_model_file_name : cluster_model.pkl
 
-model_trainer-config:
+model_trainer_config:
   model_file_name : model.pkl
   base_accuracy : 0.6
   model_config_dir : config
   model_config_file_name : model.yaml
+
+
+model_evalution_config:
+  model_evulation_file_name : model_evulation.yaml
 
   
