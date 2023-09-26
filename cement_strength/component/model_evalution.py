@@ -32,7 +32,7 @@ class Modelevalution:
             logging.info(f"model evulation file path is : {model_evalution_file_path}")
 
             model = None
-            CLUSTER_NUMBER = cluster_number
+            CLUSTER_NUMBER = 'cluster'+str(cluster_number)
             if not os.path.exists(model_evalution_file_path):
                 write_yaml_file(file_path=model_evalution_file_path)
                 logging.info(f"Writing blank file as no file was there")
@@ -61,8 +61,8 @@ class Modelevalution:
             model_evulation_file_content = dict() if model_evulation_file_content is None else model_evulation_file_content
 
             previous_best_model = None
-            CLUSTER_NUMBER = cluster_number
-            CLUSTER_HISTORY = str(CLUSTER_NUMBER)+"_history"
+            CLUSTER_NUMBER = 'cluster'+str(cluster_number)
+            CLUSTER_HISTORY = CLUSTER_NUMBER+"_history"
 
             if CLUSTER_NUMBER in model_evulation_file_content:
                 previous_best_model = model_evulation_file_content[CLUSTER_NUMBER][BEST_MODEL_KEY]
@@ -104,12 +104,14 @@ class Modelevalution:
             trained_models_dir = os.path.dirname(self.model_trainer_artifact.trained_model_path)
             logging.info(f"trained models are availabel at : {trained_models_dir}")
 
-            model_evulation_artifact=None
+            model_evulation_artifact = None
+            cluster_model_path_list = []
 
             for cluster_number in range(len(train_files)):
                 logging.info(f"{'>>'*20}cluster : {cluster_number}{'<<'*20}")
 
                 cluster_model_path = os.path.join(trained_models_dir,'cluster'+str(cluster_number),trained_model_name)
+                cluster_model_path_list.append(cluster_model_path)
                 logging.info(f"loading object of the model from : {cluster_model_path}")
                 trained_obj = load_object(file_path=cluster_model_path)
 
@@ -138,6 +140,9 @@ class Modelevalution:
                                                                       is_model_accepted=True)
                     self.get_update_evalution_report(cluster_number=cluster_number,model_evulation_artifact=model_evulation_artifact)
 
+                    
+                    
+
                     continue
                 
                 model_list = [model,trained_obj]
@@ -151,8 +156,6 @@ class Modelevalution:
                                                                             y_test=np.array(y_test),base_accuracy=base_accuracy,model_list=model_list)
                 logging.info(f"metric info artifact : {metric_info_artifact}")
                 if metric_info_artifact is None:
-                    model_evulation_artifact = ModelEvulationArtifact(is_model_accepted=True,
-                                                                      evulation_model_file_path=cluster_model_path)
                     continue
 
                 if metric_info_artifact.index_number==1:
@@ -163,8 +166,11 @@ class Modelevalution:
 
                 else:
                     logging.info("Trained model is not better then existing model hence not accepting it")
-                    model_evulation_artifact = ModelEvulationArtifact(is_model_accepted=True,
-                                                                      evulation_model_file_path=cluster_model_path)
+                    
+                    
+            model_evulation_artifact = ModelEvulationArtifact(evulation_model_file_path=cluster_model_path_list,
+                                                                      is_model_accepted=True)
+            logging.info(f"model evulation artifact : {model_evulation_artifact}")
                 
             return model_evulation_artifact
 

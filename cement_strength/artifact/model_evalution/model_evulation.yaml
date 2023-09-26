@@ -1,0 +1,15 @@
+cluster0:
+  best_model:
+    model_path: D:\projects\cement_strength_prediction\cement_strength\artifact\model_trainer\2023-09-26-09-55-26\cluster0\model.pkl
+cluster1:
+  best_model:
+    model_path: D:\projects\cement_strength_prediction\cement_strength\artifact\model_trainer\2023-09-26-09-55-26\cluster1\model.pkl
+cluster2:
+  best_model:
+    model_path: D:\projects\cement_strength_prediction\cement_strength\artifact\model_trainer\2023-09-26-09-57-54\cluster2\model.pkl
+cluster2_history:
+  2023-09-26-09-57-54:
+    model_path: D:\projects\cement_strength_prediction\cement_strength\artifact\model_trainer\2023-09-26-09-55-26\cluster2\model.pkl
+cluster3:
+  best_model:
+    model_path: D:\projects\cement_strength_prediction\cement_strength\artifact\model_trainer\2023-09-26-09-55-26\cluster3\model.pkl
