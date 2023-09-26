@@ -60,11 +60,17 @@ MODEL_TRAINER_CONFIG_DIR_KEY = "model_config_dir"
 MODEL_TRAINER_CONFIG_FILE_NAME_KEY = "model_config_file_name"
 
 
-#model evalution related variable
+#model evalution related variables
 
 MODEL_EVALUTION_CONFIG_KEY = "model_evalution_config"
 MODEL_EVALUTION_DIR = "model_evalution"
 MODEL_EVALUTION_FILE_NAME_KEY = "model_evulation_file_name"
+
+#model pusher related variables
+
+MODEL_PUSHER_CONFIG_KEY = "model_pusher_config"
+MODEL_PUSHER_DIR = "model_pusher"
+MODEL_PUSHER_EXPORT_DIR_KEY = "model_export_dir"
 
 
 BEST_MODEL_KEY = "best_model"

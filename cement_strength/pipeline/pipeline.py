@@ -3,11 +3,12 @@ from cement_strength.exception import CementstrengthException
 from cement_strength.logger import logging
 from cement_strength.component.data_ingestion import DataIngestion
 from cement_strength.config.configuration import Configuration
-from cement_strength.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact,ModelEvulationArtifact
+from cement_strength.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact,ModelEvulationArtifact,ModelPusherArtifact
 from cement_strength.component.data_validation import DataValidation
 from cement_strength.component.data_transform import DataTransformation
 from cement_strength.component.model_trainer import ModelTrainer
 from cement_strength.component.model_evalution import Modelevalution
+from cement_strength.component.model_pusher import ModelPusher
 
 class Pipeline:
 
@@ -63,6 +64,13 @@ class Pipeline:
         except Exception as e:
             raise CementstrengthException(e,sys) from e
         
+    def start_model_pusher(self, model_evalution_artifact : ModelEvulationArtifact)->ModelPusherArtifact:
+        try:
+            model_pusher = ModelPusher(model_pusher_config=self.config.get_model_pusher_config(),
+                                       model_evulation_artifact=model_evalution_artifact)
+            return model_pusher.intiate_model_pusher()
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
         
     def run_pipeline(self):
         data_igestion_artifact = self.start_data_ingestion()
@@ -73,3 +81,4 @@ class Pipeline:
         model_evalution_artifact = self.start_model_evalution(data_transform_artifact=data_transform_artifact,
                                                               data_validation_artifact=data_validation_artifact,
                                                               model_trainer_artifact=model_trainer_artifact)
+        model_pusher_artifact = self.start_model_pusher(model_evalution_artifact=model_evalution_artifact)

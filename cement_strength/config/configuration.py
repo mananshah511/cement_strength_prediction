@@ -3,7 +3,7 @@ from cement_strength.logger import logging
 from cement_strength.constant import *
 import os,sys
 from cement_strength.util.util import read_yaml
-from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvulationConfig
+from cement_strength.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvulationConfig,ModelPusherConfig
 
 
 class Configuration:
@@ -146,6 +146,24 @@ class Configuration:
                                                             
             logging.info(f"model evulation config : {model_evulation_config}")
             return model_evulation_config
+        except Exception as e:
+            raise CementstrengthException(e,sys) from e
+        
+    def get_model_pusher_config(self)->ModelPusherConfig:
+        try:
+            logging.info(f"get model pusher config function started")
+            artifact_dir = self.training_pipeline_config.artifact_dir
+
+            model_pusher_config = self.config_info[MODEL_PUSHER_CONFIG_KEY]
+
+            export_dir_path = os.path.join(artifact_dir,MODEL_PUSHER_DIR,model_pusher_config[MODEL_PUSHER_EXPORT_DIR_KEY]
+                                           )
+            
+            model_pusher_config = ModelPusherConfig(export_dir_path=export_dir_path)
+
+            logging.info(f"model pusher config : {model_pusher_config}")
+
+            return model_pusher_config
         except Exception as e:
             raise CementstrengthException(e,sys) from e
 
